@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffcc;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  h1 {
+    color: #cc0000;
+  }
+  h2 {
+    color: #3366ff;
+  }
+  .container {
+    margin-top: 50px;
+  }
+  .links {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  .links a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    margin: 0 15px;
+  }
+  .links a:hover {
+    color: #cc0000;
+  }
