@@ -37,19 +37,23 @@
 
   <!-- Google Translate API Integration -->
   <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,es,fr,de', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+    // Function to translate the page
+    function translatePage(selectedLanguage) {
+      var translator = new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: selectedLanguage, layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+      translator.showBanner(false); // Hide Google Translate banner
     }
-  </script>
-  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-  
-  <!-- Apply selected language -->
-  <script>
+
+    // Initial translation with default language
+    translatePage('en');
+
+    // Apply selected language when dropdown changes
     document.getElementById('languageSelector').addEventListener('change', function() {
       var selectedLanguage = this.value;
-      googleTranslateElementInit(); // Call the Google Translate function again
-      // You can save the selected language preference using cookies or localStorage for future visits
+      translatePage(selectedLanguage);
     });
   </script>
+  
+  <!-- Google Translate API Script -->
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
