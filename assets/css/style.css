@@ -1,31 +1,54 @@
+/* Merged CSS combining both styles */
+
+/* Common styles for body, fonts, and margins */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #ffffff;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-  }
-  h1 {
-    color: #000000;
-  }
-  h2 {
-    color: #000000;
-  }
-  .container {
-    margin-top: 50px;
-  }
-  .links {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-  }
-  .links a {
-    text-decoration: none;
-    color: #000;
-    font-weight: bold;
-    margin: 0 15px;
-    text-decoration: underline;
-  }
-  .links a:hover {
-    color: blue;
-  }
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  color: #000000;
+}
+
+h1,
+h2 {
+  color: #000000;
+  text-align: center;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.links a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  margin: 0 15px;
+  text-decoration: underline;
+}
+
+.links a:hover {
+  color: blue;
+}
+
+/* Specific styles for map and info section */
+#map {
+  height: 400px;
+  width: 80%;
+  margin: 20px auto;
+  border: 1px solid #ccc;
+}
+
+#info {
+  text-align: center;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 5%;
+}
