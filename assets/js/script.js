@@ -10,6 +10,12 @@ map.on('click', function(e) {
   alert('Clicked coordinates: ' + clickedPoint.lat + ', ' + clickedPoint.lng);
 });
 
+// Function to handle displaying coordinates when a marker is clicked
+function onMarkerClick(e) {
+  var clickedMarker = e.latlng;
+  alert('Marker coordinates: ' + clickedMarker.lat + ', ' + clickedMarker.lng);
+}
+
 var csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTuYq4O9hSnJhYTob1RLkWE_3QN_REwf5N1z3-gp4yfldD2MLe5GKDEiCr6yKgMOnUDpTLdFgm4VkVG/pub?output=csv';
 
 // Use Google Sheets to CSV for Plotting

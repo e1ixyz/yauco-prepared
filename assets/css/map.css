@@ -21,3 +21,14 @@ h1 {
   padding-right: 5%;
   padding-bottom: 5%;
 }
+
+.links a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  margin: 0 15px;
+  text-decoration: underline;
+}
+.links a:hover {
+  color: blue;
+}
