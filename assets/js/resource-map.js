@@ -4,26 +4,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
 }).addTo(map);
 
-// Function to handle getting coordinates from address
-function getCoordinatesFromAddress() {
-  var address = document.getElementById('addressInput').value;
-
-  // Using Leaflet's control Geocoder to convert address to coordinates
-  var geocoder = L.Control.geocoder({
-    defaultMarkGeocode: false,
-  })
-    .on('markgeocode', function (e) {
-      var latlng = e.geocode.center;
-      alert('Coordinates for ' + address + ': ' + latlng.lat + ', ' + latlng.lng);
-    })
-    .addTo(map);
-
-  geocoder.geocode(address);
-}
-
-// Attach the getCoordinatesFromAddress function to the button click event
-document.getElementById('getCoordinatesBtn').addEventListener('click', getCoordinatesFromAddress);
-
 var csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTD6tLOjJj5OjMMPRsTEWaQQ2fiFDCOA4NhKjyVaH7yEB6L0DYDNhAx0IvavH1hRUd6U3gip__UQ_5l/pub?output=csv';
 
 // Use Google Sheets to CSV for Plotting
@@ -65,3 +45,30 @@ map.on('click', function(e) {
   var clickedPoint = e.latlng;
   alert('Clicked coordinates: ' + clickedPoint.lat + ', ' + clickedPoint.lng);
 });
+
+// Function to handle getting user's location
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        var userLat = position.coords.latitude;
+        var userLng = position.coords.longitude;
+
+        // Do something with userLat and userLng
+        console.log('Latitude:', userLat);
+        console.log('Longitude:', userLng);
+
+        // Optionally, display coordinates to the user
+        alert('Latitude: ' + userLat + '\nLongitude: ' + userLng);
+      },
+      function (error) {
+        console.error('Error getting location:', error);
+      }
+    );
+  } else {
+    alert('Geolocation is not supported by this browser.');
+  }
+}
+
+// Attach the getLocation function to the button click event
+document.getElementById('getLocationBtn').addEventListener('click', getLocation);
