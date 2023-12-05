@@ -1,10 +1,18 @@
+// Initialize Leaflet Map
 var map = L.map('map').setView([18.2, 66.5], 1);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
 }).addTo(map);
 
+// Map Click
+map.on('click', function(e) {
+  var clickedPoint = e.latlng;
+  alert('Clicked coordinates: ' + clickedPoint.lat + ', ' + clickedPoint.lng);
+});
+
 var csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTuYq4O9hSnJhYTob1RLkWE_3QN_REwf5N1z3-gp4yfldD2MLe5GKDEiCr6yKgMOnUDpTLdFgm4VkVG/pub?output=csv';
 
+// Use Google Sheets to CSV for Plotting
 fetch(csvUrl)
   .then(response => response.text())
   .then(data => {
