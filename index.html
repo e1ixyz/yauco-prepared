@@ -4,56 +4,32 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="assets/css/style.css">
   <title>Disaster Media Final</title>
-  <style>
-    /* Styling for language selection dropdown */
-    #languageSelector {
-      margin: 10px;
-      padding: 5px;
-      font-size: 16px;
-    }
-  </style>
 </head>
 <body>
   <h1>Disaster Media Final</h1>
-  <h2>sub header goes here</h2>
+  <h2>Sub header goes here</h2>
   <div class="container">
     <div class="links">
       <a href="page4.html">Evacuation</a>
       <a href="mesh-network.html">Mesh Network Wifi</a>
       <a href="location-map.html">Location Map</a>
       <a href="resource-map.html">Resource Map</a>
-    </div><br>
-    <p>overview goes here Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, ullam at. Neque quasi molestiae hic reprehenderit ut praesentium animi rerum voluptatem magnam quos ex aperiam laborum, adipisci tempora, deserunt a! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, sapiente deserunt corporis commodi debitis impedit sint quidem recusandae et libero accusantium, blanditiis expedita ipsam. Repellendus sit dicta eos eius earum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi illum ut doloremque dolorem quae, dignissimos nulla architecto quibusdam aperiam quas ratione necessitatibus deserunt vitae qui voluptatum sint temporibus asperiores cupiditate.</p>
+    </div>
+    <br>
+    <p>Overview goes here. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, ullam at. Neque quasi molestiae hic reprehenderit ut praesentium animi rerum voluptatem magnam quos ex aperiam laborum, adipisci tempora, deserunt a! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, sapiente deserunt corporis commodi debitis impedit sint quidem recusandae et libero accusantium, blanditiis expedita ipsam. Repellendus sit dicta eos eius earum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi illum ut doloremque dolorem quae, dignissimos nulla architecto quibusdam aperiam quas ratione necessitatibus deserunt vitae qui voluptatum sint temporibus asperiores cupiditate.</p>
+
+    <!-- Language Selection Buttons -->
+    <p>Please select your preferred language:</p>
+    <button onclick="selectLanguage('en')">English</button>
+    <button onclick="selectLanguage('es')">Spanish</button>
+    <!-- Add more language buttons as needed -->
   </div>
 
-  <!-- Language Selection Dropdown -->
-  <select id="languageSelector">
-    <option value="en">English</option>
-    <option value="es">Spanish</option>
-    <option value="fr">French</option>
-    <option value="de">German</option>
-    <!-- Add more language options -->
-  </select>
-
-  <!-- Google Translate API Integration -->
-  <script type="text/javascript">
-    // Function to translate the page
-    function translatePage(selectedLanguage) {
-      var translator = new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: selectedLanguage, layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
-      translator.showBanner(false); // Hide Google Translate banner
+  <script>
+    function selectLanguage(lang) {
+      localStorage.setItem('preferredLanguage', lang);
+      window.location.href = 'home.html'; // Redirect to the homepage or main content page
     }
-
-    // Initial translation with default language
-    translatePage('en');
-
-    // Apply selected language when dropdown changes
-    document.getElementById('languageSelector').addEventListener('change', function() {
-      var selectedLanguage = this.value;
-      translatePage(selectedLanguage);
-    });
   </script>
-  
-  <!-- Google Translate API Script -->
-  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
