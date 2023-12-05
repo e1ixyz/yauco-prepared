@@ -31,4 +31,31 @@ fetch(csvUrl)
     console.error('Error fetching data:', error);
   });
 
+// Function to handle getting user's location
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        var userLat = position.coords.latitude;
+        var userLng = position.coords.longitude;
+
+        // Do something with userLat and userLng
+        console.log('Latitude:', userLat);
+        console.log('Longitude:', userLng);
+
+        // Optionally, display coordinates to the user
+        alert('Latitude: ' + userLat + '\nLongitude: ' + userLng);
+      },
+      function (error) {
+        console.error('Error getting location:', error);
+      }
+    );
+  } else {
+    alert('Geolocation is not supported by this browser.');
+  }
+}
+
+// Attach the getLocation function to the button click event
+document.getElementById('getLocationBtn').addEventListener('click', getLocation);
+
 
