@@ -2,44 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="assets/css/style.css">
   <title>Disaster Media Final</title>
-  <!-- Include jQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <!-- Your merged CSS -->
   <style>
-    /* Your merged CSS styles */
+    /* Your CSS styles */
     /* ... */
-    /* Styling for language selection modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.4);
-    }
-    .modal-content {
-      background-color: #fefefe;
-      margin: 15% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-    }
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
+    /* Styling for language selection dropdown */
+    #languageSelector {
+      margin: 10px;
+      padding: 5px;
+      font-size: 16px;
     }
   </style>
 </head>
@@ -53,42 +24,32 @@
       <a href="location-map.html">Location Map</a>
       <a href="resource-map.html">Resource Map</a>
     </div><br>
-    <p>overview goes here Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, ullam at. Neque quasi molestiae hic reprehenderit ut praesentium animi rerum voluptatem magnam quos ex aperiam laborum, adipisci tempora, deserunt a! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, sapiente deserunt corporis commodi debitis impedit sint quidem recusandae et libero accusantium, blanditiis expedita ipsam. Repellendus sit dicta eos eius earum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi illum ut doloremque dolorem quae, dignissimos nulla architecto quibusdam aperiam quas ratione necessitatibus deserunt vitae qui voluptatum sint temporibus asperiores cupiditate.</p>
+    <p>overview goes here... (your content)</p>
   </div>
 
-  <!-- Language Selection Modal -->
-  <div id="languageModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Select Your Language</h2>
-      <select id="languageSelector">
-        <option value="en">English</option>
-        <option value="es">Spanish</option>
-        <!-- Add more language options -->
-      </select>
-      <button id="applyLanguage">Apply</button>
-    </div>
-  </div>
+  <!-- Language Selection Dropdown -->
+  <select id="languageSelector">
+    <option value="en">English</option>
+    <option value="es">Spanish</option>
+    <option value="fr">French</option>
+    <option value="de">German</option>
+    <!-- Add more language options -->
+  </select>
 
-  <!-- JavaScript to handle language selection -->
+  <!-- Google Translate API Integration -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,es,fr,de', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  
+  <!-- Apply selected language -->
   <script>
-    $(document).ready(function() {
-      // Display language selection modal on initial load
-      $('#languageModal').show();
-
-      // Close the language selection modal
-      $('.close').click(function() {
-        $('#languageModal').hide();
-      });
-
-      // Apply selected language on button click
-      $('#applyLanguage').click(function() {
-        var selectedLanguage = $('#languageSelector').val();
-        // Save the selected language preference (e.g., in a cookie or local storage)
-
-        // Redirect to the selected language page
-        window.location.href = 'index_' + selectedLanguage + '.html'; // Change the URL based on your page naming convention
-      });
+    document.getElementById('languageSelector').addEventListener('change', function() {
+      var selectedLanguage = this.value;
+      googleTranslateElementInit(); // Call the Google Translate function again
+      // You can save the selected language preference using cookies or localStorage for future visits
     });
   </script>
 </body>
