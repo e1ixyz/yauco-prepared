@@ -40,11 +40,17 @@ fetch(csvUrl)
     console.error('Error fetching data:', error);
   });
 
-// Map Click
-map.on('click', function(e) {
+// Function to display longitude and latitude on map click
+function displayCoordinates(e) {
   var clickedPoint = e.latlng;
-  alert('Clicked coordinates: ' + clickedPoint.lat + ', ' + clickedPoint.lng);
-});
+  var popup = L.popup()
+    .setLatLng(clickedPoint)
+    .setContent('Latitude: ' + clickedPoint.lat.toFixed(6) + '<br>Longitude: ' + clickedPoint.lng.toFixed(6))
+    .openOn(map);
+}
+
+// Map Click
+map.on('click', displayCoordinates);
 
 // Function to handle getting user's location
 function getLocation() {
