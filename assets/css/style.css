@@ -31,18 +31,11 @@ h2 {
   color: #000;
   font-weight: bold;
   margin: 0 15px;
+  text-decoration: underline;
 }
 
 .links a:hover {
   color: blue;
-}
-
-.active {
-  text-decoration: none;
-  color: #000;
-  font-weight: bold;
-  margin: 0 15px;
-  text-decoration: underline;
 }
 
 /* Specific styles for map and info section */
