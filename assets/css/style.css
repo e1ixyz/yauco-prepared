@@ -16,8 +16,8 @@ h2 {
   text-align: center;
 }
 h6 {
-  color: #000000;
-  text-align: center;
+  text-decoration: none;
+  color: #000;
   font-weight: bold;
   margin: 0 15px;
   text-decoration: underline;
