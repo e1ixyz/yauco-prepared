@@ -10,12 +10,6 @@ map.on('click', function(e) {
   alert('Clicked coordinates: ' + clickedPoint.lat + ', ' + clickedPoint.lng);
 });
 
-// Function to handle displaying coordinates when a marker is clicked
-function onMarkerClick(e) {
-  var clickedMarker = e.latlng;
-  alert('Marker coordinates: ' + clickedMarker.lat + ', ' + clickedMarker.lng);
-}
-
 var csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTuYq4O9hSnJhYTob1RLkWE_3QN_REwf5N1z3-gp4yfldD2MLe5GKDEiCr6yKgMOnUDpTLdFgm4VkVG/pub?output=csv';
 
 // Use Google Sheets to CSV for Plotting
@@ -32,14 +26,15 @@ fetch(csvUrl)
         var longitude = parseFloat(columns[1]);
         var latitude = parseFloat(columns[2]);
 
-        mapPoints.push(L.latLng(latitude, longitude)); // Create latLng object
+        var marker = L.marker([latitude, longitude]).addTo(map);
+        
+        // Add event listener to each marker for click event
+        marker.on('click', function(e) {
+          var clickedMarker = e.target.getLatLng();
+          alert('Marker coordinates: ' + clickedMarker.lat + ', ' + clickedMarker.lng);
+        });
       }
     }
-
-    // Adding markers to the map based on fetched data
-    mapPoints.forEach(point => {
-      L.marker(point).addTo(map); // Use latLng object for marker creation
-    });
   })
   .catch(error => {
     console.error('Error fetching data:', error);
@@ -71,5 +66,3 @@ function getLocation() {
 
 // Attach the getLocation function to the button click event
 document.getElementById('getLocationBtn').addEventListener('click', getLocation);
-
-
