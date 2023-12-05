@@ -4,12 +4,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
 }).addTo(map);
 
-// Map Click
-map.on('click', function(e) {
-  var clickedPoint = e.latlng;
-  alert('Clicked coordinates: ' + clickedPoint.lat + ', ' + clickedPoint.lng);
-});
-
 var csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTuYq4O9hSnJhYTob1RLkWE_3QN_REwf5N1z3-gp4yfldD2MLe5GKDEiCr6yKgMOnUDpTLdFgm4VkVG/pub?output=csv';
 
 // Use Google Sheets to CSV for Plotting
@@ -17,28 +11,40 @@ fetch(csvUrl)
   .then(response => response.text())
   .then(data => {
     var lines = data.split('\n');
-    var mapPoints = [];
 
     for (var i = 1; i < lines.length; i++) {
       var columns = lines[i].split(',');
-      if (columns.length >= 3) {
-        var timestamp = columns[0];
+      if (columns.length >= 5) {
         var longitude = parseFloat(columns[1]);
         var latitude = parseFloat(columns[2]);
+        var name = columns[3]; // Name from column D
+        var contact = columns[4]; // Contact from column E
 
         var marker = L.marker([latitude, longitude]).addTo(map);
         
-        // Add event listener to each marker for click event
-        marker.on('click', function(e) {
-          var clickedMarker = e.target.getLatLng();
-          alert('Marker coordinates: ' + clickedMarker.lat + ', ' + clickedMarker.lng);
-        });
+        // Create the popup content based on available data
+        var popupContent = 'Latitude: ' + latitude + '<br>Longitude: ' + longitude;
+        if (name.trim() !== '') {
+          popupContent += '<br>Name: ' + name;
+        }
+        if (contact.trim() !== '') {
+          popupContent += '<br>Contact: ' + contact;
+        }
+        
+        // Bind popup with custom content to the marker
+        marker.bindPopup(popupContent);
       }
     }
   })
   .catch(error => {
     console.error('Error fetching data:', error);
   });
+
+// Map Click
+map.on('click', function(e) {
+  var clickedPoint = e.latlng;
+  alert('Clicked coordinates: ' + clickedPoint.lat + ', ' + clickedPoint.lng);
+});
 
 // Function to handle getting user's location
 function getLocation() {
