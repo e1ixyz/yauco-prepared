@@ -2,29 +2,53 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Resource Map</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
   <link rel="stylesheet" href="assets/css/style.css">
-  <script type="text/javascript" src="assets/js/translation.js"></script>
-  <!-- Google Translate API Script -->
-  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <title>Disaster Media Final</title>
 </head>
 <body>
-  <h1>Resource Map</h1>
-  <div id="map"></div>
-  <center>
-  <p>Click on a location for it's coordinates or</p><div class="links"><a id="getLocationBtn">Click Here for your Coordinates</a></div><br><br>
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfma4Lx73HPXYmxvvjcmUAXyT9VticeNVR-D11MMapBjY4Xxg/viewform?embedded=true" width="460" height="560" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe><br><br>
-  </center>
-  <p id="info">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda error odio similique. Officia similique veritatis reprehenderit necessitatibus, repudiandae dolores quas quasi omnis perferendis quos ut quisquam officiis ab beatae architecto. Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita aspernatur aliquid et magni officia numquam eos perferendis modi deserunt eveniet totam, quidem nam obcaecati facilis quis voluptate rem repellendus soluta? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, architecto veritatis? Adipisci, debitis obcaecati. Ipsam unde facere, mollitia nihil vel odit tempore possimus iusto illo, modi quaerat aliquid quod neque.</p>
+  <h1>Disaster Media Final</h1>
+  <h2>Sub header goes here</h2>
+  <div class="container">
+    <div class="links">
+      <a href="page4.html">Evacuation</a>
+      <a href="mesh-network.html">Mesh Network Wifi</a>
+      <a href="location-map.html">Location Map</a>
+      <a href="resource-map.html">Resource Map</a>
+    </div>
+    <br>
+    <p>Overview goes here. Lorem ipsum dolor sit amet ...</p>
 
-  <!-- Include Leaflet library -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-  crossorigin=""></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="assets/js/resource-map.js"></script>
+    <!-- Language Selection Dropdown -->
+    <label for="languageSelect">Select Language:</label>
+    <select id="languageSelect" onchange="changeLanguage(this.value)">
+      <option value="en">English</option>
+      <option value="es">Spanish</option>
+      <option value="fr">French</option>
+      <option value="de">German</option>
+      <option value="it">Italian</option>
+      <option value="ja">Japanese</option>
+      <option value="ko">Korean</option>
+      <option value="ru">Russian</option>
+      <option value="zh-CN">Chinese (Simplified)</option>
+      <option value="ar">Arabic</option>
+      <!-- Add more language options as needed -->
+    </select>
+
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element"></div>
+
+    <script type="text/javascript">
+      function changeLanguage(lang) {
+        var $select = document.querySelector("#google_translate_element select");
+        $select.value = lang;
+        $select.dispatchEvent(new Event("change"));
+      }
+
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+      }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  </div>
 </body>
 </html>
