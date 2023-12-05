@@ -3,7 +3,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
 }).addTo(map);
 
-// Fetching data from Google Sheets CSV URL
 var csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTuYq4O9hSnJhYTob1RLkWE_3QN_REwf5N1z3-gp4yfldD2MLe5GKDEiCr6yKgMOnUDpTLdFgm4VkVG/pub?output=csv';
 
 fetch(csvUrl)
@@ -19,16 +18,17 @@ fetch(csvUrl)
         var longitude = parseFloat(columns[1]);
         var latitude = parseFloat(columns[2]);
 
-        mapPoints.push({ lat: latitude, lng: longitude }); // Push as object with lat/lng keys
+        mapPoints.push(L.latLng(latitude, longitude)); // Create latLng object
       }
     }
 
     // Adding markers to the map based on fetched data
     mapPoints.forEach(point => {
-      L.marker([point.lat, point.lng]).addTo(map); // Use lat/lng properties for marker creation
+      L.marker(point).addTo(map); // Use latLng object for marker creation
     });
   })
   .catch(error => {
     console.error('Error fetching data:', error);
   });
+
 
