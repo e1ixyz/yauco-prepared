@@ -19,15 +19,16 @@ fetch(csvUrl)
         var longitude = parseFloat(columns[1]);
         var latitude = parseFloat(columns[2]);
 
-        mapPoints.push([latitude, longitude]);
+        mapPoints.push({ lat: latitude, lng: longitude }); // Push as object with lat/lng keys
       }
     }
 
     // Adding markers to the map based on fetched data
     mapPoints.forEach(point => {
-      L.marker(point).addTo(map);
+      L.marker([point.lat, point.lng]).addTo(map); // Use lat/lng properties for marker creation
     });
   })
   .catch(error => {
     console.error('Error fetching data:', error);
   });
+
