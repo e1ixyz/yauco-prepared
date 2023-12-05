@@ -17,5 +17,7 @@ h1 {
 
 #info {
   text-align: center;
-  width: 80%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 5%;
 }
