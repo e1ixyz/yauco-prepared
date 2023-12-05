@@ -9,6 +9,15 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element"></div>
+
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+      }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   <h1>Location Map</h1>
   <div id="map"></div>
   <center>
@@ -23,6 +32,5 @@
   crossorigin=""></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="assets/js/location-map.js"></script>
-  <script src="header.html"></script>
 </body>
 </html>
