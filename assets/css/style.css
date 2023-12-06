@@ -58,10 +58,3 @@ h2 {
   right: 10px;
   z-index: 1000; /* Ensures it stays on top of other content */
 }
-
-.goog-logo-link {
-  display:none !important;
-} 
-.goog-te-gadget{
-  color: transparent !important;
-}
