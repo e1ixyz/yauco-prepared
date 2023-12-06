@@ -59,14 +59,6 @@ h2 {
   z-index: 1000; /* Ensures it stays on top of other content */
 }
 
-.goog-logo-link {
-  display:none !important;
-}
-
 .goog-te-gadget {
-  color: transparent !important;
-}
-
-.goog-te-gadget .goog-te-combo {
-  color: blue !important;
+  font-size: 0px;
 }
