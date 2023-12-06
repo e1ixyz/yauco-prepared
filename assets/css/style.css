@@ -59,6 +59,9 @@ h2 {
   z-index: 1000; /* Ensures it stays on top of other content */
 }
 
-.goog-te-gadget {
-  font-size: 0px;
+.goog-logo-link {
+  display:none !important;
+} 
+.goog-te-gadget{
+  color: transparent !important;
 }
