@@ -54,7 +54,7 @@ h2 {
 
 #google_translate_element {
   position: fixed;
-  top: 10px;
+  bottom: 10px;
   right: 10px;
   z-index: 1000; /* Ensures it stays on top of other content */
 }
