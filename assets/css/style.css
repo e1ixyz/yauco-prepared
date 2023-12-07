@@ -45,11 +45,12 @@ h2 {
 
 /* Specific styles for map and info section */
 #map {
-  height: 400px;
-  width: 80%;
+  height: 550px;
+  width: 50%;
+  min-width: 475px;
   margin: 20px auto;
   border: 1px solid #ccc;
-}
+} 
 
 #info {
   text-align: center;
