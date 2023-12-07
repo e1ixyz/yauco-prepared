@@ -45,7 +45,7 @@ h2 {
 
 /* Specific styles for map and info section */
 #map {
-  height: 550px;
+  height: 500px;
   width: 50%;
   min-width: 475px;
   margin: 20px auto;
