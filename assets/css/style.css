@@ -10,7 +10,11 @@ body {
   color: #000000;
 }
 
-h1,
+h1 {
+  color: #000000;
+  text-align: center;
+}
+
 h2 {
   color: #000000;
   text-align: center;
