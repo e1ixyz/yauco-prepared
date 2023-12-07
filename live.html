@@ -36,7 +36,6 @@
     osm.addTo(map);
 
     var users = {}; // Object to hold user markers and circles
-    var addedLayers = L.layerGroup().addTo(map); // Layer group to store added markers and circles
 
     if (!navigator.geolocation) {
         console.log("Your browser doesn't support geolocation feature!")
@@ -54,23 +53,13 @@
         // Create/update marker and circle for the user
         if (!users.hasOwnProperty(position.timestamp)) {
             users[position.timestamp] = {};
-            users[position.timestamp].marker = L.marker([lat, long]);
-            users[position.timestamp].circle = L.circle([lat, long], { radius: accuracy });
+            users[position.timestamp].marker = L.marker([lat, long]).addTo(map);
+            users[position.timestamp].circle = L.circle([lat, long], { radius: accuracy }).addTo(map);
         } else {
+            // Update existing marker and circle
             users[position.timestamp].marker.setLatLng([lat, long]);
             users[position.timestamp].circle.setLatLng([lat, long]).setRadius(accuracy);
         }
-
-        // Clear the added layers before updating
-        addedLayers.clearLayers();
-
-        // Add markers and circles of all users to the layer group
-        Object.keys(users).forEach(function (key) {
-            addedLayers.addLayer(users[key].marker);
-            addedLayers.addLayer(users[key].circle);
-        });
-
-        map.fitBounds(addedLayers.getBounds());
 
         console.log("User count: " + Object.keys(users).length);
     }
