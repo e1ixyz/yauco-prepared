@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realtime location tracker</title>
+
+    <!-- leaflet css  -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+</body>
+
+<!-- leaflet js  -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+    var map = L.map('map').setView([14.0860746, 100.608406], 6);
+    var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+    osm.addTo(map);
+
+    var users = {}; // Object to hold user markers and circles
+
+    if (!navigator.geolocation) {
+        console.log("Your browser doesn't support geolocation feature!")
+    } else {
+        setInterval(() => {
+            navigator.geolocation.getCurrentPosition(updatePosition)
+        }, 5000);
+    }
+
+    function updatePosition(position) {
+        var lat = position.coords.latitude
+        var long = position.coords.longitude
+        var accuracy = position.coords.accuracy
+
+        // Create/update marker and circle for the user
+        if (!users.hasOwnProperty(position.timestamp)) {
+            users[position.timestamp] = {};
+            users[position.timestamp].marker = L.marker([lat, long]);
+            users[position.timestamp].circle = L.circle([lat, long], { radius: accuracy });
+        } else {
+            users[position.timestamp].marker.setLatLng([lat, long]);
+            users[position.timestamp].circle.setLatLng([lat, long]).setRadius(accuracy);
+        }
+
+        var featureGroup = L.featureGroup(); // Create a new feature group
+
+        // Add markers and circles of all users to the feature group
+        Object.keys(users).forEach(function (key) {
+            featureGroup.addLayer(users[key].marker);
+            featureGroup.addLayer(users[key].circle);
+        });
+
+        // Clear the map and add the updated feature group
+        map.eachLayer(function (layer) {
+            if (layer !== osm) {
+                map.removeLayer(layer);
+            }
+        });
+
+        featureGroup.addTo(map);
+        map.fitBounds(featureGroup.getBounds());
+
+        console.log("User count: " + Object.keys(users).length);
+    }
+</script>
+</html>
