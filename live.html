@@ -42,7 +42,7 @@
     } else {
         setInterval(() => {
             navigator.geolocation.getCurrentPosition(updatePosition)
-        }, 60000); // Update every 60 seconds
+        }, 5000);
     }
 
     function updatePosition(position) {
@@ -50,16 +50,33 @@
         var long = position.coords.longitude
         var accuracy = position.coords.accuracy
 
-        // Check if user exists in the users object
+        // Create/update marker and circle for the user
         if (!users.hasOwnProperty(position.timestamp)) {
             users[position.timestamp] = {};
-            users[position.timestamp].marker = L.marker([lat, long]).addTo(map);
-            users[position.timestamp].circle = L.circle([lat, long], { radius: accuracy }).addTo(map);
+            users[position.timestamp].marker = L.marker([lat, long]);
+            users[position.timestamp].circle = L.circle([lat, long], { radius: accuracy });
         } else {
-            // Update existing marker and circle
             users[position.timestamp].marker.setLatLng([lat, long]);
             users[position.timestamp].circle.setLatLng([lat, long]).setRadius(accuracy);
         }
+
+        var featureGroup = L.featureGroup(); // Create a new feature group
+
+        // Add markers and circles of all users to the feature group
+        Object.keys(users).forEach(function (key) {
+            featureGroup.addLayer(users[key].marker);
+            featureGroup.addLayer(users[key].circle);
+        });
+
+        // Clear the map and add the updated feature group
+        map.eachLayer(function (layer) {
+            if (layer !== osm) {
+                map.removeLayer(layer);
+            }
+        });
+
+        featureGroup.addTo(map);
+        map.fitBounds(featureGroup.getBounds());
 
         console.log("User count: " + Object.keys(users).length);
     }
