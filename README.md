@@ -15,3 +15,7 @@ In the Google Forms, press “Link to Sheets” in the “Respones” page. In t
 Format the Google Sheets just like how they are on our website. 
 
 Using notepad or an IDE, review each page (index.html, resources.html, etc.) and go through the previous steps and make sure to match each link to its respective Google docs, Sheets, and Form. The downloaded code will tell you where to put these links.
+
+Publish your website for free using Netlify or another provider.
+
+Share your finished website to others to continue growing the project!
