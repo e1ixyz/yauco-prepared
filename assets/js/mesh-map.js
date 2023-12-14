@@ -4,6 +4,9 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
 }).addTo(map);
 
+
+// Go to your Google Sheets and press: File > Share > Publish to Web
+// Be sure to select CSV and then copy that link and paste below. This is how you will fetch data from the Mesh Map Google Form
 var csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTuYq4O9hSnJhYTob1RLkWE_3QN_REwf5N1z3-gp4yfldD2MLe5GKDEiCr6yKgMOnUDpTLdFgm4VkVG/pub?output=csv';
 
 // Use Google Sheets to CSV for Plotting

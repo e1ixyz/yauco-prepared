@@ -4,6 +4,9 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
 }).addTo(map);
 
+
+// Go to your Google Sheets and press: File > Share > Publish to Web
+// Be sure to select CSV and then copy that link and paste below. This is how you will fetch data from the Resource Map Google Form
 var csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTD6tLOjJj5OjMMPRsTEWaQQ2fiFDCOA4NhKjyVaH7yEB6L0DYDNhAx0IvavH1hRUd6U3gip__UQ_5l/pub?output=csv';
 
 // Use Google Sheets to CSV for Plotting
